@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  resources :dance_classes
   resources :sessions, :only => [:create, :destroy]
 
   get 'test_admin' => 'test_admin#index'
