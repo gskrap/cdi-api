@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+  before_create :generate_authentication_token!
+
   validates :username, presence: true, uniqueness: true
+  validates :auth_token, uniqueness: true
   validates :role, presence: true
   has_secure_password
 
@@ -11,6 +14,12 @@ class User < ActiveRecord::Base
 
   enum role: [:student, :teacher, :work_study, :admin]
   after_initialize :set_default_role, :if => :new_record?
+
+  def generate_authentication_token!
+    begin
+      self.auth_token = Devise.friendly_token
+    end while self.class.exists?(auth_token: auth_token)
+  end
 
   def set_default_role
     self.role ||= :student
