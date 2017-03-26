@@ -1,7 +1,47 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+User.create(
+  [{username: 'gskrap', first_name: 'George', last_name: 'Skrapits', password: 'gskrap', role: 3},
+   {username: 'mestrain', first_name: 'Melissa', last_name: 'Strain', password: 'mestrain', role: 3},
+   {username: 'aa', first_name: 'Andrew', last_name: 'Adams', password: 'aa'},
+   {username: 'bb', first_name: 'Bianca', last_name: 'Brown', password: 'bb'},
+   {username: 'cc', first_name: 'Cathy', last_name: 'Crosby', password: 'cc'},
+   {username: 'workstudy', first_name: 'Wendy', last_name: 'WorkStudy', password: 'workstudy', role: 2},
+   {username: 'teacher', first_name: 'Tiffany', last_name: 'Teacher', password: 'teacher', role: 1},
+  ]
+)
+
+Group.create(
+  [{name: 'Group A'},
+   {name: 'Group B'},
+   {name: 'Men'},
+   {name: 'Women'},
+   {name: 'Alumni'},
+  ]
+)
+
+GroupStudent.create(
+  [{group_id: 1, student_id: 3},
+   {group_id: 2, student_id: 4},
+   {group_id: 3, student_id: 3},
+   {group_id: 4, student_id: 4},
+   {group_id: 4, student_id: 5},
+   {group_id: 5, student_id: 3},
+   {group_id: 5, student_id: 4},
+   {group_id: 5, student_id: 5},
+  ]
+)
+
+DanceClass.create(
+  [{name: 'Ballet Bonanza', teacher_id: 7},
+   {name: 'Super Salsa', teacher_id: 7},
+   {name: 'Cha-cha a-go-go', teacher_id: 7},
+   {name: 'So Modern it Hurts', teacher_id: 7},
+   {name: 'Boring Ballroom', teacher_id: 7},
+  ]
+)
+
+GroupDanceClass.create(
+  [{group_id: 1, dance_class_id: 1},
+   {group_id: 1, dance_class_id: 2},
+   {group_id: 5, dance_class_id: 2},
+  ]
+)
