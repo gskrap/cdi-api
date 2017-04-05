@@ -20,3 +20,12 @@ class SessionsController < ApplicationController
     head 204
   end
 end
+
+# store auth_token like this on JS side
+# window.localStorage.setItem(key, value)
+
+# get auth_token like this
+# window.localStorage.getItem(key)
+
+# put it in header
+# Authorization: token
