@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def user_status
-    render json: {loggedIn: user_signed_in?, role: current_user.role}
+    render json: {loggedIn: user_signed_in?, user: current_user}
   end
 end
 
