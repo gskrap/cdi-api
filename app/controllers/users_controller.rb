@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :authenticate_with_token!, only: [:update, :destroy]
-  before_action :set_user, only: [:show, :classes, :update, :destroy]
+  before_action :set_user, only: [:show, :dance_classes, :update, :destroy]
 
   # GET /users
   def index
@@ -14,8 +14,8 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  # GET /users/1/classes
-  def classes
+  # GET /users/1/dnace_classes
+  def dance_classes
     render json: @user.classes
   end
 
