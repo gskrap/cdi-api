@@ -19,6 +19,10 @@ class SessionsController < ApplicationController
     @user.save if @user
     head 204
   end
+
+  def user_status
+    render json: {loggedIn: user_signed_in?, role: current_user.role}
+  end
 end
 
 # store auth_token like this on JS side
