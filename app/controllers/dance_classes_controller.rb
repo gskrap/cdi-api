@@ -5,7 +5,7 @@ class DanceClassesController < ApplicationController
   def index
     @dance_classes = DanceClass.all
 
-    render json: @dance_classes
+    render json: @dance_classes, include: [:teacher, :groups]
   end
 
   # GET /dance_classes/1

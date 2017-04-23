@@ -21,9 +21,9 @@ class UsersController < ApplicationController
     render json: @teachers
   end
 
-  # GET /users/1/dnace_classes
+  # GET /users/1/dance_classes
   def dance_classes
-    render json: @user.classes
+    render json: @user.classes, include: [:teacher, :groups]
   end
 
   # POST /users
