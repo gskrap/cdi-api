@@ -14,6 +14,13 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  # GET /teachers
+  def teachers
+    @teachers = User.teacher
+
+    render json: @teachers
+  end
+
   # GET /users/1/dnace_classes
   def dance_classes
     render json: @user.classes
