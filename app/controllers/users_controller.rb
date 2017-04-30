@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user, include: [:emergency_contact]
   end
 
   # GET /teachers
@@ -59,6 +59,7 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:role, :username, :first_name, :last_name, :password)
+      params.require(:user).permit(:username, :first_name, :last_name, :date_of_birth, :email, :phone,
+        :emergency_contact_id, :gender, :alumni, :password)
     end
 end
