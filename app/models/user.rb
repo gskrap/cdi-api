@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :classes_teaching, class_name: 'DanceClass', foreign_key: 'teacher_id'
   has_many :classes_taking, -> { distinct }, through: :groups, source: :dance_classes
 
-  has_one :emergency_contact
+  has_many :emergency_contacts
 
   enum role: [:student, :teacher, :work_study, :admin]
   after_initialize :set_default_role, :if => :new_record?

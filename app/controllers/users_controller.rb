@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :authenticate_with_token!, only: [:update, :destroy]
-  before_action :set_user, only: [:show, :dance_classes, :update, :destroy]
+  before_action :set_user, only: [:show, :dance_classes, :emergency_contacts, :create_emergency_contacts, :update, :destroy]
 
   # GET /users
   def index
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user, include: [:emergency_contact]
+    render json: @user
   end
 
   # GET /teachers
@@ -24,6 +24,22 @@ class UsersController < ApplicationController
   # GET /users/1/dance_classes
   def dance_classes
     render json: @user.classes, include: [:teacher, :groups]
+  end
+
+  # GET /users/1/emergency_contacts
+  def emergency_contacts
+    render json: @user.emergency_contacts
+  end
+
+  # POST /users/1/emergency_contacts
+  def create_emergency_contacts
+    @emergency_contact = @user.emergency_contacts.new(emergency_contact_params)
+
+    if @emergency_contact.save
+      render json: @emergency_contact
+    else
+      render json: @emergency_contact.errors, status: :unprocessable_entity
+    end
   end
 
   # POST /users
@@ -61,5 +77,9 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :first_name, :last_name, :date_of_birth, :email, :phone,
         :emergency_contact_id, :gender, :alumni, :password)
+    end
+
+    def emergency_contact_params
+      params.require(:emergency_contact).permit(:first_name, :last_name, :relationship, :email, :phone)
     end
 end
