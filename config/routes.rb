@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  resources :groups
   resources :dance_classes
   resources :sessions, :only => [:create, :destroy]
 
