@@ -6,12 +6,12 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: @users, include: [:groups]
   end
 
   # GET /users/1
   def show
-    render json: @user
+    render json: @user, include: [:groups]
   end
 
   # GET /teachers
@@ -47,6 +47,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      Group.where(name: 'Alumni')[0].group_students.create(student_id: @user.id) if @user.alumni
+      Group.where(name: 'Men')[0].group_students.create(student_id: @user.id) if @user.gender == 'male'
+      Group.where(name: 'Women')[0].group_students.create(student_id: @user.id) if @user.gender == 'female'
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
