@@ -5,12 +5,12 @@ class DanceClassesController < ApplicationController
   def index
     @dance_classes = DanceClass.all
 
-    render json: @dance_classes, include: [:teacher, :groups]
+    render json: @dance_classes, include: [:groups, :teacher, :location]
   end
 
   # GET /dance_classes/1
   def show
-    render json: @dance_class
+    render json: @dance_class, include: [:groups, :teacher, :location]
   end
 
   # POST /dance_classes
@@ -52,7 +52,7 @@ class DanceClassesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def dance_class_params
-      params.require(:dance_class).permit(:name, :teacher_id, :start_time)
+      params.require(:dance_class).permit(:name, :teacher_id, :location_id, :start_time)
     end
 
     def dance_class_group_params

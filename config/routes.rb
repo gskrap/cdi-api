@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :locations
   resources :users
   resources :groups
   resources :dance_classes
