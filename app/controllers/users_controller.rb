@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # before_action :authenticate_with_token!, only: [:update, :destroy]
-  before_action :set_user, only: [:show, :dance_classes, :emergency_contacts, :create_emergency_contacts, :update, :destroy]
+  before_action :set_user, only: [:show, :dance_classes, :emergency_contacts, :create_emergency_contacts, :update, :update_user_groups, :get_user_groups, :destroy]
 
   # GET /users
   def index
@@ -65,6 +65,20 @@ class UsersController < ApplicationController
     end
   end
 
+  # post /users/1/groups
+  def update_user_groups
+    @user.group_students.destroy_all
+    user_group_params.each do |id, value|
+      @user.group_students.create(group_id: id.to_i) if value
+    end
+    render json: @user.group_students
+  end
+
+  # get /users/1/groups
+  def get_user_groups
+    render json: @user.group_students
+  end
+
   # DELETE /users/1
   def destroy
     @user.destroy
@@ -83,5 +97,9 @@ class UsersController < ApplicationController
 
     def emergency_contact_params
       params.require(:emergency_contact).permit(:first_name, :last_name, :relationship, :email, :phone)
+    end
+
+    def user_group_params
+      params.require(:values)
     end
 end
