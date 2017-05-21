@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.order(:first_name)
 
     render json: @users, include: [:groups]
   end
