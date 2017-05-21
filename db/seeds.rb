@@ -18,6 +18,12 @@ Group.create(
   ]
 )
 
+Location.create(
+  [{name: 'Waffle House'},
+   {name: 'Yoccos'},
+  ]
+)
+
 GroupStudent.create(
   [{group_id: 1, student_id: 3},
    {group_id: 2, student_id: 4},
@@ -31,11 +37,11 @@ GroupStudent.create(
 )
 
 DanceClass.create(
-  [{name: 'Ballet Bonanza', teacher_id: 7},
-   {name: 'Super Salsa', teacher_id: 7},
-   {name: 'Cha-cha a-go-go', teacher_id: 7},
-   {name: 'So Modern it Hurts', teacher_id: 7},
-   {name: 'Boring Ballroom', teacher_id: 7},
+  [{name: 'Ballet Bonanza', teacher_id: 7, location_id: 1},
+   {name: 'Super Salsa', teacher_id: 7, location_id: 1},
+   {name: 'Cha-cha a-go-go', teacher_id: 7, location_id: 1},
+   {name: 'So Modern it Hurts', teacher_id: 7, location_id: 1},
+   {name: 'Boring Ballroom', teacher_id: 7, location_id: 1},
   ]
 )
 
