@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
   def create
-    username = params[:session][:username]
+    email = params[:session][:email]
     password = params[:session][:password]
-    @user = User.find_by(username: username)
+    @user = User.find_by(email: email)
 
     if @user && @user.authenticate(password)
       @user.generate_authentication_token!
       @user.save
       render json: @user, status: 200
     else
-      render json: { errors: "Invalid username or password" }, status: 422
+      render json: { errors: "Invalid email or password" }, status: 422
     end
   end
 

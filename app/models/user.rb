@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_create :generate_authentication_token!
 
-  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
   validates :auth_token, uniqueness: true
   validates :role, presence: true
   has_secure_password
