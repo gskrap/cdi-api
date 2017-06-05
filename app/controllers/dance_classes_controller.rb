@@ -1,10 +1,9 @@
 class DanceClassesController < ApplicationController
-  before_action :set_dance_class, only: [:show, :update, :destroy]
+  before_action :set_dance_class, only: [:show, :update, :destroy, :get_dance_class_groups, :update_dance_class_groups]
 
   # GET /dance_classes
   def index
     @dance_classes = DanceClass.all
-
     render json: @dance_classes, include: [:groups, :teacher, :location]
   end
 
@@ -38,6 +37,20 @@ class DanceClassesController < ApplicationController
       render json: @dance_class.errors, status: :unprocessable_entity
     end
   end
+  
+  # post /dance_classes/1/groups
+  def update_dance_class_groups
+    @dance_class.group_dance_classes.destroy_all
+    dance_class_update_group_params.each do |id, value|
+      @dance_class.group_dance_classes.create(group_id: id.to_i) if value
+    end
+    render json: @dance_class.group_dance_classes
+  end
+
+  # get /dance_classes/1/groups
+  def get_dance_class_groups
+    render json: @dance_class.group_dance_classes
+  end
 
   # DELETE /dance_classes/1
   def destroy
@@ -57,5 +70,9 @@ class DanceClassesController < ApplicationController
 
     def dance_class_group_params
       params.require(:dance_class)
+    end
+
+    def dance_class_update_group_params
+      params.require(:values)
     end
 end

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'users/:id/emergency_contacts' => 'users#create_emergency_contacts'
   get  'users/:id/groups'             => 'users#get_user_groups'
   post 'users/:id/groups'             => 'users#update_user_groups'
+  get  'dance_classes/:id/groups'     => 'dance_classes#get_dance_class_groups'
+  post 'dance_classes/:id/groups'     => 'dance_classes#update_dance_class_groups'
   get  'user_status'                  => 'sessions#user_status'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
