@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/dance_classes
   def dance_classes
-    render json: @user.classes.order("start_time ASC"), include: [:teacher, :groups]
+    render json: @user.classes.sort_by{|a| a.start_time}, include: [:teacher, :groups]
   end
 
   # GET /users/1/emergency_contacts

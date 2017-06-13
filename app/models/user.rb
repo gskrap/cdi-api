@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :group_students
 
   has_many :classes_teaching, class_name: 'DanceClass', foreign_key: 'teacher_id'
+  has_many :classes_secondary_teaching, class_name: 'DanceClass', foreign_key: 'secondary_teacher_id'
   has_many :classes_taking, -> { distinct }, through: :groups, source: :dance_classes
 
   has_many :emergency_contacts
@@ -34,6 +35,6 @@ class User < ActiveRecord::Base
   end
 
   def classes
-    (classes_teaching + classes_taking).uniq
+    (classes_teaching + classes_secondary_teaching + classes_taking).uniq
   end
 end
