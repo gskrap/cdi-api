@@ -4,7 +4,7 @@ class DanceClassesController < ApplicationController
   # GET /dance_classes
   def index
     @dance_classes = DanceClass.all
-    render json: @dance_classes, include: [:groups, :teacher, :location]
+    render json: @dance_classes.order("start_time ASC"), include: [:groups, :teacher, :location]
   end
 
   # GET /dance_classes/1
@@ -37,7 +37,7 @@ class DanceClassesController < ApplicationController
       render json: @dance_class.errors, status: :unprocessable_entity
     end
   end
-  
+
   # post /dance_classes/1/groups
   def update_dance_class_groups
     @dance_class.group_dance_classes.destroy_all
