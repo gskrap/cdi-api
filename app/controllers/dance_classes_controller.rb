@@ -4,12 +4,12 @@ class DanceClassesController < ApplicationController
   # GET /dance_classes
   def index
     @dance_classes = DanceClass.all
-    render json: @dance_classes.order("start_time ASC"), include: [:groups, :teacher, :location]
+    render json: @dance_classes.order("start_time ASC"), include: [:groups, :teacher, :secondary_teacher, :location]
   end
 
   # GET /dance_classes/1
   def show
-    render json: @dance_class, include: [:groups, :teacher, :location]
+    render json: @dance_class, include: [:groups, :teacher, :secondary_teacher, :location]
   end
 
   # POST /dance_classes
