@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def teachers
     @teachers = User.teacher
 
-    render json: @teachers
+    render json: @teachers.sort_by{|t| t.first_name}
   end
 
   # GET /users/1/dance_classes
