@@ -1,5 +1,5 @@
 class DanceClassesController < ApplicationController
-  before_action :set_dance_class, only: [:show, :update, :destroy, :get_dance_class_groups, :update_dance_class_groups]
+  before_action :set_dance_class, only: [:show, :update, :destroy, :get_dance_class_groups, :get_dance_class_students, :update_dance_class_groups]
 
   # GET /dance_classes
   def index
@@ -50,6 +50,11 @@ class DanceClassesController < ApplicationController
   # get /dance_classes/1/groups
   def get_dance_class_groups
     render json: @dance_class.group_dance_classes
+  end
+
+  # get /dance_classes/1/students
+  def get_dance_class_students
+    render json: @dance_class.students.student.sort_by{|s| s.first_name}
   end
 
   # DELETE /dance_classes/1

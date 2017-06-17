@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get  'users/:id/groups'             => 'users#get_user_groups'
   post 'users/:id/groups'             => 'users#update_user_groups'
   get  'dance_classes/:id/groups'     => 'dance_classes#get_dance_class_groups'
+  get  'dance_classes/:id/students'   => 'dance_classes#get_dance_class_students'
   post 'dance_classes/:id/groups'     => 'dance_classes#update_dance_class_groups'
   get  'user_status'                  => 'sessions#user_status'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
