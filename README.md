@@ -1,3 +1,3 @@
 # README
 
-Rails JSON api to back forthcoming React/Redux front end.
+Rails JSON api to back React/Redux front end.
