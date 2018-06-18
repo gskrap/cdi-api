@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618031129) do
+ActiveRecord::Schema.define(version: 20180618012651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20170618031129) do
     t.boolean  "alumni",               default: false
     t.string   "photo"
     t.string   "bio"
+    t.boolean  "archived",             default: false
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   end
 
