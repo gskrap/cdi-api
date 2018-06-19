@@ -70,7 +70,7 @@ class DanceClassesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def dance_class_params
-      params.require(:dance_class).permit(:name, :teacher_id, :secondary_teacher_id, :location_id, :start_time, :end_time)
+      params.require(:dance_class).permit(:name, :teacher_id, :secondary_teacher_id, :location_id, :start_time, :end_time, :notes)
     end
 
     def dance_class_group_params
