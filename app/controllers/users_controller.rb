@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   # GET /teachers
   def teachers
-    @teachers = User.where(archived: false).teacher
+    @teachers = User.where(archived: false, role: ["teacher", "admin"])
 
     render json: @teachers.sort_by{|t| t.first_name}
   end
