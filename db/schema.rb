@@ -10,20 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180618012651) do
+ActiveRecord::Schema.define(version: 20200607213519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dance_classes", force: :cascade do |t|
-    t.string   "name",                 null: false
-    t.integer  "teacher_id",           null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "name",                     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.datetime "start_time"
     t.integer  "location_id"
     t.datetime "end_time"
-    t.integer  "secondary_teacher_id"
+    t.string   "notes",       default: ""
   end
 
   create_table "emergency_contacts", force: :cascade do |t|
@@ -62,6 +61,13 @@ ActiveRecord::Schema.define(version: 20180618012651) do
     t.integer  "dance_classes_count", default: 0
   end
 
+  create_table "teacher_dance_classes", force: :cascade do |t|
+    t.integer  "teacher_id",     null: false
+    t.integer  "dance_class_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.integer  "role",                                 null: false
     t.string   "first_name",                           null: false
@@ -76,7 +82,6 @@ ActiveRecord::Schema.define(version: 20180618012651) do
     t.integer  "emergency_contact_id"
     t.integer  "gender",               default: 0
     t.boolean  "alumni",               default: false
-    t.string   "photo"
     t.string   "bio"
     t.boolean  "archived",             default: false
     t.index ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
