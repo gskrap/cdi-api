@@ -6,24 +6,24 @@ class UsersController < ApplicationController
   def index
     @users = User.order(:first_name)
 
-    render json: @users, include: [:groups]
+    render json: @users, include: [:groups], :except=>  [:auth_token, :password_digest]
   end
 
   # GET /users/1
   def show
-    render json: @user, include: [:groups]
+    render json: @user, include: [:groups], :except=>  [:auth_token, :password_digest]
   end
 
   # GET /teachers
   def teachers
     @teachers = User.where(archived: false, role: ["teacher", "admin"])
 
-    render json: @teachers.sort_by{|t| t.first_name}
+    render json: @teachers.sort_by{|t| t.first_name}, :except=>  [:auth_token, :password_digest]
   end
 
   # GET /users/1/dance_classes
   def dance_classes
-    render json: @user.classes.sort_by{|a| a.start_time}, include: [:groups, :teacher, :secondary_teacher, :location]
+    render json: @user.classes.sort_by{|a| a.start_time}, include: [:groups, :location, :teachers]
   end
 
   # GET /users/1/emergency_contacts
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: @user, :except=>  [:auth_token, :password_digest]
     else
       render json: @user.errors, status: :unprocessable_entity
     end
