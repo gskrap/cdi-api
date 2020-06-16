@@ -14,10 +14,8 @@ class DanceClassesController < ApplicationController
 
   # POST /dance_classes
   def create
-    @dance_class = DanceClass.new(dance_class_params)
-
+    @dance_class = DanceClass.new(dance_class_params[:dance_class])
     if @dance_class.save
-      # ***
       @group_dance_class_ids = dance_class_params[:group_ids]
       @group_dance_class_ids.each do |id|
         GroupDanceClass.create(group_id: id, dance_class_id: @dance_class.id)
@@ -27,8 +25,6 @@ class DanceClassesController < ApplicationController
       @teacher_dance_class_ids.each do |id|
         TeacherDanceClass.create(teacher_id: id, dance_class_id: @dance_class.id)
       end
-      # ***
-
       render json: @dance_class, status: :created, location: @dance_class
     else
       render json: @dance_class.errors, status: :unprocessable_entity
