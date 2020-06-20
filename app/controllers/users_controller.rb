@@ -48,8 +48,6 @@ class UsersController < ApplicationController
 
     if @user.save
       Group.where(name: 'Alumni')[0].group_students.create(student_id: @user.id) if @user.alumni
-      Group.where(name: 'Men')[0].group_students.create(student_id: @user.id) if @user.gender == 'male'
-      # Group.where(name: 'Women')[0].group_students.create(student_id: @user.id) if @user.gender == 'female'
       render json: @user, status: :created, location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
