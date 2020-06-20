@@ -47,7 +47,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params[:user])
 
     if @user.save
-      Group.where(name: 'Alumni')[0].group_students.create(student_id: @user.id) if @user.alumni
       render json: @user, status: :created, :except=>  [:password_digest], location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
