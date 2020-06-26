@@ -11,10 +11,7 @@ class User < ActiveRecord::Base
   has_many :classes_taking, -> { distinct }, through: :groups, source: :dance_classes
 
   has_many :teacher_dance_classes, foreign_key: 'teacher_id'
-  has_many :classes_teaching, class_name: 'DanceClass', through: :teacher_dance_classes
-
-#   has_many :classes_teaching, class_name: 'DanceClass', foreign_key: 'teacher_id'
-#   has_many :classes_secondary_teaching, class_name: 'DanceClass', foreign_key: 'secondary_teacher_id'
+  has_many :classes_teaching, -> { distinct }, through: :teacher_dance_classes, source: :dance_class
 
   has_many :emergency_contacts
 
