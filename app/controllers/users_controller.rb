@@ -66,8 +66,8 @@ class UsersController < ApplicationController
   # post /users/1/groups
   def update_user_groups
     @user.group_students.destroy_all
-    user_group_params.each do |id, value|
-      @user.group_students.create(group_id: id.to_i) if value
+    user_group_params.each do |id|
+      @user.group_students.create(group_id: id)
     end
     render json: @user.group_students
   end
