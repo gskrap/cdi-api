@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params[:user])
 
     if @user.save
-      render json: @user, status: :created, :except=>  [:password_digest], location: @user
+      render json: @user, include: [:groups], status: :created, :except=>  [:password_digest], location: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params[:user])
       @user.save
-      render json: @user, :except=>  [:auth_token, :password_digest]
+      render json: @user, include: [:groups], :except=>  [:auth_token, :password_digest]
     else
       render json: @user.errors, status: :unprocessable_entity
     end
