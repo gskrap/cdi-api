@@ -19,7 +19,7 @@ gem 'puma', '~> 3.0'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'devise'
+gem 'devise', '~> 4.7.3'
 gem 'pry'
 
 gem 'rack-cors', :require => 'rack/cors'
