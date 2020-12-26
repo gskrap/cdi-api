@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
   # POST /users/1/emergency_contacts
   def create_emergency_contacts
-    @emergency_contact = @user.emergency_contacts.new(emergency_contact_params)
+    @emergency_contact = @user.emergency_contacts.new(emergency_contact_params[:emergency_contact])
 
     if @emergency_contact.save
       render json: @emergency_contact
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     end
 
     def emergency_contact_params
-      params.require(:emergency_contact).permit(:first_name, :last_name, :relationship, :email, :phone)
+      params.permit!
     end
 
     def user_group_params
